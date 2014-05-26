@@ -6,33 +6,33 @@
  Available under the MIT License (http://opensource.org/licenses/MIT)
  **/
 ;(function(factory){
-	if(typeof define === "function" && define.amd)
-	    define(["jquery"], factory);
-	else
-	    factory(jQuery);
+    if(typeof define === "function" && define.amd)
+        define(["jquery"], factory);
+    else
+        factory(jQuery);
 })(function($){
     $.fn.smartHeader = function(options){
-    	options = options || {};
+        options = options || {};
 
-    	var $window = $(window),
-			$header = this,
-			collapseBreakpoint = options.collapseBreakpoint || 50,
-			throttleTimeout = options.throttleTimeout || 300,
-			collapsedClassName = options.collapsedClassName || "collapsed-header",
-			scrolled = false;
+        var $window = $(window),
+            $header = this,
+            collapseBreakpoint = options.collapseBreakpoint || 50,
+            throttleTimeout = options.throttleTimeout || 300,
+            collapsedClassName = options.collapsedClassName || "collapsed-header",
+            scrolled = false;
 
-		function setHeaderHeight(){
-			$header.toggleClass(collapsedClassName, $window.scrollTop() >= collapseBreakpoint);
-			scrolled = false;
-		}
+        function setHeaderHeight(){
+            $header.toggleClass(collapsedClassName, $window.scrollTop() >= collapseBreakpoint);
+            scrolled = false;
+        }
 
-		$window.scroll(function(){
-			if(!scrolled){
-				scrolled = true;
-				setTimeout(setHeaderHeight, throttleTimeout);
-			}
-		});
+        $window.scroll(function(){
+            if(!scrolled){
+                scrolled = true;
+                setTimeout(setHeaderHeight, throttleTimeout);
+            }
+        });
 
-		return this;
+        return this;
     };  
 });
